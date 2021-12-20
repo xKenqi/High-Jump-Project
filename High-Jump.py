@@ -1,3 +1,8 @@
+print("\033[1;34;10m  \n") # Adds colour to text. 
+print("Welcome to Long Jump.")
+print("You have 3 attempts at each height to achive your desired height. If you use all 3 attempts at one height without scoring it, the game ends.")
+print("Enter \"0\" to quit the game with your current high score.")
+print("\033[1;37;10m  \n")
 import random # To use the "random.randint" function to make to code choose random number for dice roll. 
 attempts = 0 # To count how many attempts the user is using. 
 a_height = 0 # Maximum height achieved. 
@@ -5,9 +10,17 @@ L = [10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30] # List of heights available.
 print("The following heights are available to choose from.")
 print(L)
 height = int(input("Your selected height: "))
-while height not in L: # If the number is not in the list, it prints out "invalid number". 
+while height == 0: # If the user enters "0", the game ends and prints your high score. 
+    print("\033[1;34;10m  \n")
+    print("You chose to quit.")
+    print("Your heighest score was",a_height,)
+    print("\033[1;37;10m  \n")
+    break
+while height not in L and height >= 1: # If the number is not in the list, it prints out "invalid number". 
+    print("\033[1;33;10m  \n")
     print("This is an invalid number, please choose another.")
     height = int(input("Your VALID selected height: "))
+    print("\033[1;37;10m  \n")
 while height in L and attempts < 3: # This loop only runs when the attempts are under 3 and entered number is in the list.
     roll = input("Enter \"y\" to roll the dice: ")
     if roll == "y":
@@ -78,19 +91,34 @@ while height in L and attempts < 3: # This loop only runs when the attempts are 
             print(u"\u2685")
         sum = d1 + d2 + d3 + d4 + d5 # Sums up all the die. 
         if sum >= height:
-            a_height = height # If the sum is higher or equal to the choosen height, your choosen height becomes your "Highest height achieved."
+            if height > a_height: # Only if the selected height is bigger than the one already achived. 
+                a_height = height # If the sum is higher or equal to the choosen height, your choosen height becomes your "Highest height achieved."
+            print("\033[1;32;10m  \n")
             print("You managed to score heigher than your selected height.")
             print("Your current highest scored height is",a_height,)
+            print("\033[1;37;10m  \n")
             attempts = 0
             height = int(input("Your next selected height: "))
         elif sum < height: # If the sum is not equal or higher than the choosen height. It prints that you did not achieve it and asks you to roll again. 
             attempts += 1
+            print("\033[1;31;10m  \n")
             print("You did not score higher than your selected height.")
+            print("\033[1;37;10m  \n")
         if height not in L:
+            print("\033[1;33;10m  \n")
             print("This is an invalid number.")
             height = int(input("Your next VALID selected height: "))
+            print("\033[1;37;10m  \n")                                                                                       
+        elif height == 0: # If the user enters "0", the game ends and prints your current high score. 
+            print("\033[1;34;10m  \n")
+            print("You chose to quit.")
+            print("Your heighest score was",a_height,)
+            print("\033[1;37;10m  \n")
+            break
 while height in L and attempts == 3: # When trying to achieve a high score, if the user fails to get the higher score within 3 attempts, game is over. 
+    print("\033[1;31;10m  \n")
     print("You failed to score higher than your selected and used all 3 attempts.")
     print("Gamer over!")
     print("Your highest score was",a_height,) # While trying to achieve a height, If the user uses all 3 attempts. It prints your highest achieved height and ends a game.
+    print("\033[1;37;10m  \n")
     break
