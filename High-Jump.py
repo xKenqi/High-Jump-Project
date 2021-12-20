@@ -13,7 +13,7 @@ height = int(input("Your selected height: "))
 while height == 0: # If the user enters "0", the game ends and prints your high score. 
     print("\033[1;34;10m  \n")
     print("You chose to quit.")
-    print("Your heighest score was",a_height,)
+    print("Your highest score was",a_height,)
     print("\033[1;37;10m  \n")
     break
 while height not in L and height >= 1: # If the number is not in the list, it prints out "invalid number". 
@@ -104,17 +104,17 @@ while height in L and attempts < 3: # This loop only runs when the attempts are 
             print("\033[1;31;10m  \n")
             print("You did not score higher than your selected height.")
             print("\033[1;37;10m  \n")
-        if height not in L:
+        if height == 0: # If the user enters "0", the game ends and prints your current high score. 
+            print("\033[1;34;10m  \n")
+            print("You chose to quit.")
+            print("Your highest score was",a_height,)
+            print("\033[1;37;10m  \n")
+            break
+        elif height not in L:
             print("\033[1;33;10m  \n")
             print("This is an invalid number.")
             height = int(input("Your next VALID selected height: "))
-            print("\033[1;37;10m  \n")                                                                                       
-        elif height == 0: # If the user enters "0", the game ends and prints your current high score. 
-            print("\033[1;34;10m  \n")
-            print("You chose to quit.")
-            print("Your heighest score was",a_height,)
-            print("\033[1;37;10m  \n")
-            break
+            print("\033[1;37;10m  \n")  
 while height in L and attempts == 3: # When trying to achieve a high score, if the user fails to get the higher score within 3 attempts, game is over. 
     print("\033[1;31;10m  \n")
     print("You failed to score higher than your selected and used all 3 attempts.")
