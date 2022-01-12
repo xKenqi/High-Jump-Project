@@ -13,7 +13,7 @@ print(L)
 print("--------------------------------------------------------------------------------")
 print("You start from 10 and work your way right until you reach 30.")
 print("Enter \"Yes\" in the following question to quit the game at any given time.")
-height = input("Would you like to end the game?: ")
+height = input("Would you like to end the game? Type \"Yes\" if so: ")
 if height == "Yes": # If the user enters "0", the game ends and prints your high score. 
     print("\033[1;31;10m  \n")
     print("You chose to quit.")
@@ -89,6 +89,7 @@ else:
             elif d5 == 6:
                 dicelist.append(u"\u2685")
             sum = d1 + d2 + d3 + d4 + d5 # Sums up all the die.
+            print("\033[1;37;10m  \n")
             print(dicelist) # Prints all the dice that the user rolled in a horizontal line. 
             print("Sum of all the dice you rolled is",sum)
             if sum >= start:
