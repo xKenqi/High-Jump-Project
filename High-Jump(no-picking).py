@@ -92,27 +92,39 @@ else:
             print(dicelist) # Prints all the dice that the user rolled in a horizontal line. 
             print("Sum of all the dice you rolled is",sum)
             if sum >= start:
-                a_height = start # If the sum is higher or equal to the choosen height, your choosen height becomes your "Highest height achieved."
-                print("\033[1;32;10m  \n")
-                print("You managed to score heigher than your selected height.")
-                print("Your current highest scored height is",a_height,)
-                print("\033[1;37;10m  \n")
-                start += 2
-                dicelist = []
-                attempts = 0
-                height = input("Would you like to end the game?: ")
+                    a_height = start # If the sum is higher or equal to the choosen height, your choosen height becomes your "Highest height achieved."
+                    print("\033[1;32;10m  \n")
+                    print("You managed to score heigher than your selected height.")
+                    print("Your current highest scored height is",a_height,)
+                    print("\033[1;37;10m  \n")
+                    print("\033[1;35;10m  \n")
+                    print("Next height is",a_height+2)
+                    print("\033[1;37;10m  \n")
+                    start += 2
+                    dicelist = []
+                    attempts = 0
+                    if a_height == 30:
+                        print("Congratulations you achieved the highest height possible.")
+                        break
+                    height = input("Would you like to end the game? Type \"Yes\" if so: ")
+                    if height == "Yes": # If the user enters "Yes", the game ends and prints your high score. 
+                        print("\033[1;31;10m  \n")
+                        print("You chose to quit.")
+                        print("Your highest score was",a_height,)
+                        print("\033[1;37;10m  \n")
+                        break
+                    skip = input("Would you like to skip this heigth and go on to the next one? Type \"Yes\" if so: ")
+                    if skip == "Yes": # If the user wants to skip the height, user can by typing "Yes".
+                        start += 2
+                        print("\033[1;35;10m  \n")
+                        print("You skipped this height, next height is",start)
+                        print("\033[1;37;10m  \n")
             elif sum < start: # If the sum is not equal or higher than the choosen height. It prints that you did not achieve it and asks you to roll again. 
-                attempts += 1
-                print("\033[1;31;10m  \n")
-                print("You did not score higher than your selected height.")
-                print("\033[1;37;10m  \n")
-                dicelist = []
-            if height == 0: # If the user enters "0", the game ends and prints your current high score. 
-                print("\033[1;31;10m  \n")
-                print("You chose to quit.")
-                print("Your highest score was",a_height,)
-                print("\033[1;37;10m  \n")
-                break
+                    attempts += 1
+                    print("\033[1;31;10m  \n")
+                    print("You did not score higher than your selected height.")
+                    print("\033[1;37;10m  \n")
+                    dicelist = []
 while attempts == 3: # When trying to achieve a high score, if the user fails to get the higher score within 3 attempts, game is over. 
     print("\033[1;31;10m  \n")
     print("You failed to score higher than your selected and used all 3 attempts.")
